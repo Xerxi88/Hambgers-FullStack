@@ -1,0 +1,67 @@
+<h3 class="d-flex justify-content-center m-2">Realizar un pedido</h3>
+<hr>
+<div class='row justify-content-center'>
+  <div class='column col-8'>
+    <form [noValidate]="true" (ngSubmit)="nuevoPedido(formulario)" #formulario="ngForm">
+      <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Nombre o apodo:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="nombre" required #nombre="ngModel"
+            [(ngModel)]="pedido.nombre_cliente">
+          <div class="alert alert-danger mt-2" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+            <div *ngIf="nombre.errors?.['required']">
+              El nombre o apodo es obligatorio
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Hamburguesa</label>
+        <div class="col-sm-10">
+          <select class="form-select" name="idhamburguesa" aria-label="Hamburguesa" required #hamburguesa="ngModel"
+            [(ngModel)]="pedido.idhamburguesa">
+            <option disabled selected value="0">Seleccione una hamburguesa</option>
+            <option *ngFor="let hamburguesa of hamburguesas" [value]="hamburguesa.id">{{hamburguesa.nombre}}
+              ({{hamburguesa.precio}}€)</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="hamburguesa.invalid && (hamburguesa.dirty || hamburguesa.touched)">
+            <div *ngIf="hamburguesa.errors?.['required']">
+              El principal es obligatorio
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Guarnición</label>
+        <div class="col-sm-10">
+          <select class="form-select" name="idfries" aria-label="Guarnicion" required #guarnicion="ngModel"
+            [(ngModel)]="pedido.idguarnicion">
+            <option disabled selected value="0">Seleccione una guarnición</option>
+            <option *ngFor="let guarnicion of guarniciones" [value]="guarnicion.id">{{guarnicion.nombre}}
+              ({{guarnicion.precio}}€)
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Bebida</label>
+        <div class="col-sm-10">
+          <select class="form-select" name="iddrink" aria-label="Bebida" required #bebida="ngModel"
+            [(ngModel)]="pedido.idbebida">
+            <option disabled selected value="0">Seleccione una bebida</option>
+            <option *ngFor="let bebida of bebidas" [value]="bebida.id">{{bebida.nombre}} ({{bebida.precio}}€)</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Peticiones:</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" name="peticiones" rows="5" #comentario="ngModel"
+            [(ngModel)]="pedido.comentario"></textarea>
+        </div>
+      </div>
+      <hr>
+      <button type="submit" class="btn btn-warning" [disabled]="formulario.invalid">Realizar pedido</button>
+    </form>
+  </div>
+</div>

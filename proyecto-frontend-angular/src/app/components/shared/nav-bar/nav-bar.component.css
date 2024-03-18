@@ -1,0 +1,12 @@
+section {
+  display: flex;
+  justify-content: center;
+}
+nav {
+  width: 75%;
+  border-radius: 10px;
+  background-color: rgb(226, 167, 57);
+}
+img {
+  height: 30px;
+}

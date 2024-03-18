@@ -1,0 +1,22 @@
+.pedido {
+  width: 75%;
+}
+
+img {
+  width: 30px;
+}
+span {
+  color: gray;
+  font-size: 1rem;
+  margin-left: 5px;
+}
+
+#tiempo {
+  color: teal;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#eliminar {
+  color: orange;
+}

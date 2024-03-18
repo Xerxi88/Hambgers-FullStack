@@ -1,0 +1,38 @@
+<h3 class="d-flex justify-content-center m-2">Detalle del pedido</h3>
+<hr>
+<div class='d-flex justify-content-center col-12' *ngIf="!pedido.id">
+  <div class="alert alert-warning col-4 text-center" role="alert">
+    <h3>El pedido no existe</h3>
+  </div>
+</div>
+<div class='row d-flex justify-content-center' *ngIf="pedido.id">
+  <div class='column col-6'>
+    <div class="card m-auto">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h2 class="card-title">Pedido nº: <span class="numero">#{{pedido.id}}</span></h2>
+          <h2 class="card-title">Cliente: <span>{{pedido.nombre_cliente}}</span></h2>
+        </div>
+        <hr>
+        <h5 class="card-subtitle mb-2 text-muted">Principal: <span
+            class="comida">{{pedido.hamburguesa|smartTruncate:50}}</span></h5>
+        <h5 class="card-subtitle mb-2 text-muted">Guarnición: <span class="comida">{{pedido.guarnicion ||
+            'Sin guarnición'}}</span></h5>
+        <div class="d-flex justify-content-between">
+          <h5 class="card-subtitle mb-2 text-muted">Postre: <span class="comida">{{pedido.bebida ||
+              'Sin bebida'}}</span>
+          </h5>
+          <h5 class="card-subtitle mb-2 text-muted d-flex justify-content-end">Total: <span
+              class="comida">{{pedido.precioTotal}}€</span>
+          </h5>
+        </div>
+        <hr>
+        <h6 class="card-text">Notas del cliente:<br> {{pedido.comentario || '"Sin comentarios"'}}</h6>
+      </div>
+      <br>
+      <div class="text-center mb-3">
+        <a routerLink="/gestion_pedidos" class="btn btn-outline-primary btn-inline">Volver a la gestión de pedidos</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<h3 class="d-flex justify-content-center m-2">Gestionar pedido</h3>
+<hr>
+<div class='d-flex justify-content-center col-12' *ngIf="!pedido.id">
+  <div class="alert alert-warning col-4 text-center" role="alert">
+    <h3>El pedido no existe</h3>
+  </div>
+</div>
+<div class='row justify-content-center' *ngIf="pedido.id">
+  <div class='column col-8'>
+    <div class="card m-auto">
+      <form id='formulario' [noValidate]="true" enctype="multipart/form-data" #formulario="ngForm">
+        <div class="card-body">
+          <h2 class="card-title d-flex justify-content-between">
+            <p>Número del pedido: <span class="numero">#{{pedido.id}}</span></p>
+            <p>Cliente: <span>{{pedido.nombre_cliente}}</span></p>
+          </h2>
+          <hr>
+          <div class="row mb-2">
+            <div class="d-flex">
+              <label class="col-sm-2 col-form-label">
+                <h5 class="card-subtitle mb-2 text-muted">Hamburguesa:</h5>
+              </label>
+              <div class="col-sm-8">
+                <select class="form-select" name="idhamburguesa" aria-label="Hamburguesas" required
+                  [(ngModel)]="pedido.idhamburguesa" #hamburguesa="ngModel">
+                  <option selected value="0">Seleccione una hamburguesa</option>
+                  <option *ngFor="let hamburguesa of hamburguesas" [value]="hamburguesa.id">
+                    {{hamburguesa.nombre|smartTruncate:50}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="d-flex">
+              <label class="col-sm-2 col-form-label">
+                <h5 class="card-subtitle mb-2 text-muted">Guarnición:</h5>
+              </label>
+              <div class="col-sm-8">
+                <select class="form-select" name="idfries" aria-label="Guarnicion" required
+                  [(ngModel)]="pedido.idguarnicion" #guarnicion="ngModel">
+                  <option disabled selected value="0">Seleccione una guarnición</option>
+                  <option *ngFor="let guarnicion of guarniciones" [value]="guarnicion.id">
+                    {{guarnicion.nombre|smartTruncate:50}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="d-flex">
+              <label class="col-sm-2 col-form-label">
+                <h5 class="card-subtitle mb-2 text-muted">Bebidas:</h5>
+              </label>
+              <div class="col-sm-8">
+                <select class="form-select" name="iddrink" aria-label="Bebidas" required [(ngModel)]="pedido.idbebida"
+                  #bebida="ngModel">
+                  <option disabled selected value="0">Seleccione una bebida</option>
+                  <option *ngFor="let bebida of bebidas" [value]="bebida.id">
+                    {{bebida.nombre|smartTruncate:50}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <h5>Comentarios del cliente</h5>
+          <textarea rows='8' cols='90' name='comentario' required [(ngModel)]="pedido.comentario"
+            #comentario="ngModel">{{pedido.comentario}}</textarea>
+          <hr>
+          <button type="button" class="btn btn-warning" [disabled]="formulario.invalid"
+            (click)="modificarPedido()">Modificar pedido</button>
+          &nbsp;
+          <button type="button" class="btn btn-danger" (click)="borrarPedido()">Borrar pedido</button>
+          <a routerLink="/gestion_pedidos" class="btn btn-outline-primary btn-block" style='float:right'>Volver a
+            listado</a>
+        </div>
+      </form>
+      <br>
+      <div class="alert alert-danger" *ngIf="formulario.invalid&&(formulario.dirty||formulario.touched)">
+        <div *ngIf="hamburguesa.errors?.['required']">
+          El plato principal es obligatorio
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

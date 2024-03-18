@@ -1,0 +1,148 @@
+<div class='row justify-content-center'>
+  <h3 class="d-flex justify-content-center m-2">Consulta y mantenimiento de platos</h3>
+  <hr>
+  <div class='col-md-3 m-2'>
+    <section>
+      <form class="pb-2" [noValidate]="true" (ngSubmit)="nuevaHamburguesa(formularioH)" #formularioH="ngForm">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <label for="hamburguesa">Nombre:</label>
+          <input type="text" class="form-control" id='hamburguesa' name="hamburguesa" required #nombreH="ngModel"
+            [(ngModel)]="hamburguesa.nombre">
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <label for="hamburguesa">Precio:</label>
+          <input type="text" class="form-control" id='hamburguesaPrecio' name="hamburguesaPrecio" required
+            #precioH="ngModel" [(ngModel)]="hamburguesa.precio">
+        </div>
+        <br>
+        <div class="text-center">
+          <button type='submit' class="btn btn-success" [disabled]="formularioH.invalid">Añadir hamburguesa</button>
+        </div>
+      </form>
+    </section>
+    <section>
+      <table class="table table-striped">
+        <thead class="table-warning">
+          <tr>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">PRECIO</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id='hamburguesas' *ngFor="let hambuger of hamburguesas">
+          <tr>
+            <td class='nombre align-middle'>
+              {{hambuger.nombre |
+              smartTruncate:50}}</td>
+            <td class='nombre align-middle'>
+              {{hambuger.precio}}€</td>
+            <td></td>
+            <td><button type='button' class="btn btn-danger" (click)="borrarHamburguesa(hambuger.id)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="47" fill="currentColor"
+                  class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+                </svg>
+              </button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+
+  <div class='col-md-3 m-2'>
+    <section>
+      <form class="pb-2" [noValidate]="true" (ngSubmit)="nuevaGuarnicion(formularioG)" #formularioG="ngForm">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <label for="guarnicion">Nombre:</label>
+          <input type="text" class="form-control" id='guarnicion' name="guarnicion" required #nombreG="ngModel"
+            [(ngModel)]="guarnicion.nombre">
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <label for="guarnicion">Precio:</label>
+          <input type="text" class="form-control" id='guarnicionPrecio' name="guarnicionPrecio" required
+            #precioG="ngModel" [(ngModel)]="guarnicion.precio">
+        </div> <br>
+        <div class="text-center">
+          <button type='submit' class="btn btn-success" [disabled]="formularioG.invalid">Añadir guarnición</button>
+        </div>
+      </form>
+    </section>
+    <section>
+      <table class="table table-striped">
+        <thead class="table-warning">
+          <tr>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">PRECIO</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id='guarnicion' *ngFor="let guranicion of guarniciones">
+          <tr>
+            <td class='nombre align-middle'>{{guranicion.nombre}}</td>
+            <td class='nombre align-middle'>{{guranicion.precio}}€</td>
+            <td></td>
+            <td><button type='button' class="btn btn-danger" (click)="borrarGuarncion(guranicion.id)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="47" fill="currentColor"
+                  class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+                </svg>
+              </button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <div class='col-md-3 m-2'>
+    <section>
+      <form class="pb-2" [noValidate]="true" (ngSubmit)="nuevaBebida(formularioB)" #formularioB="ngForm">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <label for="bebida">Nombre:</label>
+          <input type="text" class="form-control" id='bebida' name="bebida" required #nombreB="ngModel"
+            [(ngModel)]="bebida.nombre">
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <label for="bebida">Precio:</label>
+          <input type="text" class="form-control" id='bebidaPrecio' name="bebidaPrecio" required #precioB="ngModel"
+            [(ngModel)]="bebida.precio">
+        </div> <br>
+        <div class="text-center">
+          <button type='submit' class="btn btn-success" [disabled]="formularioB.invalid">Añadir bebida</button>
+        </div>
+
+      </form>
+    </section>
+    <section>
+      <table class="table table-striped">
+        <thead class="table-warning">
+          <tr>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">PRECIO</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id='bebidas' *ngFor="let bebida of bebidas">
+          <tr>
+            <td class='nombre align-middle'>{{bebida.nombre}}</td>
+            <td class='nombre align-middle'>{{bebida.precio}}€</td>
+            <td></td>
+            <td><button type='button' class="btn btn-danger" (click)="borrarBebida(bebida.id)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="47" fill="currentColor"
+                  class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+                </svg>
+              </button></td>
+
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>

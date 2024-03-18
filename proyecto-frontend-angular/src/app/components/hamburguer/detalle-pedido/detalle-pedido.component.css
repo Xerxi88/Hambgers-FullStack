@@ -1,0 +1,11 @@
+span {
+  color: orange;
+}
+
+span.numero {
+  color: gray;
+}
+
+.comida {
+  font-weight: bold;
+}
